@@ -2,6 +2,12 @@
 
 A project demonstrating BrowserSync with synchronized interactive components: checkbox and slider.
 
+docker@m-swarm01:~/containers/ventauto-control$ docker stack deploy -c docker-compose.yml ventauto-control
+
+docker@m-swarm01:~/containers/ventauto-control$ docker stack rm ventauto-control
+
+docker@m-swarm01:~/containers/ventauto-control$ docker stack ps ventauto-control
+
 ## Features
 
 - Interactive checkbox with custom styling

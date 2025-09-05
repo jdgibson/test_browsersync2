@@ -1,0 +1,25 @@
+networks:
+  traefik:
+    external: true
+
+services:
+  subsystem-ventauto-control:
+    image: debian:bookworm 
+    working_dir: /var/www/html/ventauto-control
+    command: bash -c "apt-get update && apt-get -y upgrade && apt-get install -y apt-utils curl vim git nodejs npm && ln -fs /usr/share/zoneinfo/America/Phoenix /etc/localtime && dpkg-reconfigure -f noninteractive tzdata && npm install -g browser-sync && npm install && browser-sync start --server --cors --host 0.0.0.0 --port 80 --files "css/*.css,*.html,js/*.js" --no-open"
+    environment:
+      - MPLCONFIGDIR=/tmp
+      - TZ=America/Phoenix
+    deploy:
+      labels:
+        - traefik.enable=true
+        - traefik.http.routers.subsystem-ventauto-control.entrypoints=websecure
+        - traefik.http.routers.subsystem-ventauto-control.rule=Host(`subsystem.mmto.arizona.edu`) && PathPrefix (`/ventauto-control`)
+        - traefik.http.routers.subsystem-ventauto-control.tls.certresolver=letsencrypt
+        - traefik.http.routers.subsystem-ventauto-control.middlewares=internal-only@file
+        - traefik.http.services.subsystem-ventauto-control.loadbalancer.server.port=80
+    networks:
+      - traefik
+    volumes:
+      - /etc/localhost:/etc/localtime.ro
+      - .:/var/www/html/ventauto-control # Mounts the current directory into the container
