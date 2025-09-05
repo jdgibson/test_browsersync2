@@ -1,0 +1,15 @@
+services:
+  ventauto-control:
+    image: debian:bookworm
+    platform: linux/amd64
+    restart: unless-stopped
+    working_dir: /var/www/html/ventauto-control
+    command: bash -c "apt-get update && apt-get -y upgrade && apt-get install -y vim nodejs npm && npm install -g browser-sync && npm install && ln -fs /usr/share/zoneinfo/America/Phoenix /etc/localtime && dpkg-reconfigure -f noninteractive tzdata && browser-sync start --server --port 8045 --no-open"
+    environment:
+      - MPLCONFIGDIR=/tmp
+      - TZ=America/Phoenix
+    ports:
+      - "8045:8045"
+    volumes:
+      - /etc/localhost:/etc/localtime.ro
+      - ./:/var/www/html/ventauto-control # Mounts the current directory into the container

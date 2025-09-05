@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrowserSync Checkbox & Slider Project</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>BrowserSync Interactive Demo</h1>
+        <div class="checkbox-container">
+            <label class="checkbox-label">
+                <input type="checkbox" id="myCheckbox" class="checkbox">
+                <span class="checkmark"></span>
+                Click me to toggle!
+            </label>
+        </div>
+        <div class="status" id="status">
+            Checkbox is currently: <span id="statusText">unchecked</span>
+        </div>
+        <div class="counter">
+            Times toggled: <span id="counter">0</span>
+        </div>
+        
+        <div class="slider-container">
+            <label for="syncSlider" class="slider-label">Synchronized Slider:</label>
+            <div class="slider-wrapper">
+                <input type="range" min="0" max="100" value="50" class="slider" id="syncSlider">
+                <div class="slider-value-display">
+                    <span id="sliderValue">50</span>%
+                </div>
+            </div>
+            <div class="slider-description">
+                Move the slider - it syncs across all browsers!
+            </div>
+        </div>
+        
+        <div class="sync-status" id="syncStatus">
+            Sync: <span id="syncText">Checking...</span>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

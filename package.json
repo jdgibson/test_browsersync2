@@ -1,0 +1,24 @@
+{
+  "name": "browsersync-checkbox-project",
+  "version": "1.0.0",
+  "description": "A BrowserSync project with synchronized checkbox and slider",
+  "main": "index.html",
+  "scripts": {
+    "start": "browser-sync start --config bs-config.js",
+    "dev": "browser-sync start --config bs-config.js --port 3000",
+    "simple": "browser-sync start --server --files '*.html, *.css, *.js'"
+  },
+  "keywords": [
+    "browsersync",
+    "checkbox",
+    "slider",
+    "synchronization",
+    "frontend"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.29.3",
+    "bs-html-injector": "^3.0.3"
+  }
+}
